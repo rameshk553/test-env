@@ -10,6 +10,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+
+      - name: Debug environment binding
+        run: |
+          echo "Environment bound to job"
+          env | sort
+
       - name: Print environment secret
         run: |
           if [ -z "${{ secrets.ENV_TEST_SECRET }}" ]; then
