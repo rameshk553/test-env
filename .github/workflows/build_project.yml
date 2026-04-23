@@ -1,0 +1,21 @@
+name: Build project
+
+on:
+  workflow_call:
+
+jobs:
+  build:
+    environment: 
+        name: ci
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Print environment secret
+        run: |
+          if [ -z "${{ secrets.ENV_TEST_SECRET }}" ]; then
+            echo "❌ ENV_TEST_SECRET is NOT available"
+            exit 1
+          else
+            echo "✅ ENV_TEST_SECRET is available:"
+            echo "${{ secrets.ENV_TEST_SECRET }}"
+          fi
